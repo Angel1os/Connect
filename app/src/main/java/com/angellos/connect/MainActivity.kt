@@ -34,7 +34,16 @@ class MainActivity : AppCompatActivity() {
 
         mDbRef.child("user").addValueEventListener(object: ValueEventListener{
             override fun onDataChange(snapshot: DataSnapshot) {
-                TODO("Not yet implemented")
+
+                userList.clear()
+                for (postSnapshot in snapshot.children){
+                    val currentUser = postSnapshot.getValue(User::class.java)
+
+                    if(mAuth.currentUser?.uid != currentUser?.uid){
+                        userList.add(currentUser!!)
+                    }
+                }
+                adapter.notifyDataSetChanged()
             }
 
             override fun onCancelled(error: DatabaseError) {
@@ -53,7 +62,7 @@ class MainActivity : AppCompatActivity() {
             //write the login for auth
             mAuth.signOut()
             val intent = Intent(this@MainActivity, Login::class.java)
-            
+            startActivity(intent);
             finish()
             return true
         }

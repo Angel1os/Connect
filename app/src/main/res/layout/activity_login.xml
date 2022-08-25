@@ -35,9 +35,9 @@
         android:layout_marginLeft="20dp"
         android:layout_marginTop="10dp"
         android:layout_marginRight="20dp"
-        android:paddingLeft="13dp"
         android:background="@drawable/edt_background"
-        android:hint="Password" />
+        android:hint="Password"
+        android:paddingLeft="13dp" />
 
     <Button
         android:id="@+id/btnLogin"
